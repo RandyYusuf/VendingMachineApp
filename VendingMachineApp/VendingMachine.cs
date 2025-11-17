@@ -49,7 +49,7 @@ public class VendingMachine
 
     public decimal PurchaseItem(string selectionCode)
     {
-        if (!_inventory.ContainsKey(selectionCode)) throw new KeyNotFoundException();
+        if (!_inventory.ContainsKey(selectionCode)) throw new KeyNotFoundException("*** ERROR: Code " + selectionCode + " does not exist. ***");
         var item = _inventory[selectionCode];
         if (item.Quantity <= 0) throw new OutOfStockException("*** ERROR: Sorry, " + item.Name +  " Bar is out of stock. ***");
         if (_currentBalance < item.Price) throw new InsufficientFundsException("*** ERROR: Insufficient funds. You need $" + item.Price + " more. ***");
